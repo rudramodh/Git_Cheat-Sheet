@@ -1,0 +1,260 @@
+**********IMP Comands for Git bash************
+pwd = present working directory
+
+ls = to list content
+
+cd = to change directory
+
+touch = to create a file
+
+*********************git bash commands***********************
+(git status) for status of that folder
+(git init) to initialise that folder to git repo
+(git add --a) to put ALL the files in that folder for stagging area
+(git commit -m "message") to commit those files inside that folder
+(git log) to see all the commits you have done in past
+
+Note: if you make any changes inside the files and then type (git status),
+git bash will capture that changes and give you a warning and display those files
+in red which you have modified
+
+Note: To add those modified files inside git repo type in (git add file_name.extension)
+and then check status by (git status)
+
+to commit those modified files type in (git commit -m "changes made") then check status
+by (git status)
+
+Imp Note: whenever you modify a file before commiting that file you have to
+add that file to stagging process by (git add --a) and then commit by 
+(git commit -m "changes made")
+
+To delete any git repository type (rm -rf .git)
+
+Note: To add files individually type (git add file_name.extension)
+
+***************To ignore the files in git*****************
+
+make a file using touch cammand: (touch .gitignore), after creating open 
+.gitignore file and write the file_name.extension which you would like to ignore
+then type in (git status) and then usual process of adding the gitignore file
+(git add --a) and then commit.
+
+After doing that ignore process, if you change anything inside the file which
+you ignored git bash won't show any modidfied files as it is ignored
+
+
+Now if you want to ignore all the files which has extension .log then 
+what we will do is inside .gitignore we will add command (*.log) and the 
+adding, commiting.
+
+Let's say if you want to ignore a particular folder then inside .gitignore
+type in the folder_name as shown in the git bash.
+
+Let's say if you have another folder and in that folder you have dir folder 
+but you don't want to ignore that folder then type add slash(/dir/) inside .gitignore
+this way it will only ignore the dir folder which is outside that folder.
+If you don't add / (dir/) then it will ignore all the dir folder.
+
+And to ignore folder inside folder eg: static/dir/ then add this in .gitignore
+by doing this it will ignore dir folder inside static folder. if you only put 
+static/ the it will ignore the whole folder.
+
+***************************Git Diff*****************
+
+to compare the working directory and stagging area we use (git diff) command
+
+for eg: if we have a file which is modified then we use git add --a command 
+to make that file ready for git commit, but what if we modify the file again 
+and we want to see the difference between the previous version and the current version
+then we use (git diff) command. 
+
+In short:
+git diff --staged ====> Compare previous commit to recent staging area .
+
+git diff  ===> compare staging area with working directory (modified files ).
+
+To comapre the last commit with staging area we use (git diff --staged) command
+
+**************************Skip Staging Process*********************
+
+to skip the staging process use (git commit -a -m "comment") but if you have any 
+untracked file then you have to add that file manually.
+
+
+**************************Delete, Move and Rename files*********************
+The beauty of doing this in bash is you don't have to go through staging process, 
+whereas if you manually rename it by going in that folder you will have to go through staging process
+
+
+To delete a file use (git rm file_name.extension) command
+
+To rename a file use (git mv file_name.extension new_file_name.extension) command
+
+
+**************************Stop trcaking file*********************
+use (git rm --cached file_name.extension)
+
+for eg: see video no #10 timestamp = 8:25
+
+
+
+************************Git checkout -f*********************
+
+To change your current files to the last commit then use (git checkout -f)
+
+for eg: video no. #12 timestamp: 8:05
+
+
+************************Git log -p*********************
+
+to see the commit history with details use (git log -p)
+
+
+************************Git log --stat*********************
+
+To see the summary of every commit use (git log --stat)
+
+
+************************Git log --pretty=oneline*********************
+
+to see all the commits in a single line use (git log --pretty=oneline)
+
+
+************************Git log --pretty=short/full*********************
+
+to see all the commits in short/full use (git log --pretty=short/full)
+
+
+************************Git log --since=2.days/weeks/months/years*********************
+
+to see all the commits in the past 2 days/weeks/months/years 
+use (git log --since=2.days/weeks/months/years)
+
+
+************************Unstaging & Unmodifying Files In Git*********************
+
+To unstage use (git restore --staged file_name.ext)
+
+
+To unmodify use (git checkout -- file_name.ext)
+
+for eg: video no. #12 timestamp: 4:00
+
+
+
+************************GitHub: Working with Remote Repositories*********************
+
+First Create a repo on your github account then go inside the folder 
+you want to push and make it a git repository using git bash then 
+use (git remote add origin(name) https://github.com/rudramodh/GitDemo.git)
+and then (git remote) to see the name.
+Then use (git remote -v) to get the url of pull and push
+
+You need permission to push to github for that you have to generate ssh key and 
+paste it to github account. All the details are mentioned in video no #13 
+
+After following the procedures to push we need to use (git push -u origin(name) master)
+
+IMP NOTE: If your working tree is not clean and you have some files to commit then you won't be 
+able to push the file to remote repo. Working tree must be clean and there should be nothing to commit
+
+
+************************Git: Creating & Switching Branches In Git*********************
+
+A branch is created to work on the same project without making any changes inside the master
+branch.
+
+To create branch use (git checkout -b develop(branch_name))
+after creating this branch whatever changes you make it won't affect the master branch, even 
+if you delete files and change the structure, master branch won't be affected.
+
+To switch to master branch use (git checkout master)
+if you want to switch to the branch again then use (git checkout develop(branch_name))
+
+to see all the branches use (git branch)
+for better understanding video no.#15,16
+
+
+MERGING:
+
+to merge the branches we use (git merge develop(branch_name)) after that you make the changes 
+and run (git status) command that will let you know that you have unmerged paths then we 
+need to add those merged file to staging process by (git add .) 
+After this point there are two options:
+1= you can directly use (git commit -m "message") and it will be done.
+2= you can use (git commit), this command will open vim editor where you will see the info 
+about your merge, then press (esc), (:), (wq) this will do the same job as step 1
+
+checkout video no #16
+
+************************git branch -v*********************
+
+To see the last commit of all the branches use (git branch -v)
+
+************************git branch --merged*********************
+
+It will display the branches you have merged.
+
+************************git branch --no-merged*********************
+
+It will display the branches you have not merged.
+
+
+***************Pushing Git Branches To Remote Repositories*****************
+
+to push your branch to remote repo then follow these steps:
+go to your branch by using (git checkout develop(branch_name))
+then make all the necessary changes and add(stage), commit as well as check status
+now use (git push origin(name) develop(branch_name)), that's it!!
+
+To change the name of the branch in remote repo use
+(git push origin develop(branch_name):myDevelop(branch_name_in_remote_repo))
+
+
+
+************************Deleting branches in git repo*********************
+
+For branches that have been already merged use (git branch -d develop(branch_name))
+
+For branches that have not been merged use (git branch -D develop(branch_name))
+
+
+************************Deleting branches in remote repo*********************
+
+use (git push -d origin(name) develop(branch_name))
+
+
+************************Resolving Merge Conflicts (With Example)*********************
+See video no: #17 
+
+************************Setting Alias In Git*********************
+
+to set an alias of a command use eg: (git config --global alias.st status)
+
+
+************************Git Pull Request*********************
+
+To get all the files from remote repo to local repo follow steps:
+
+
+
+1: Create a new Folder in your pc and make it a git repo using (git init)
+2: then Go to Github repository and copy the url of the repo
+3: then type (git pull url(https://github.com/rudramodh/branchDemo.git))  by running this command you will fetch 
+all the files/data from that remote repo to your local repo i.e. the folder you had created
+4: Then make all the necessary changes or delete the files.
+5: Further we will again go through staging process and commit process.
+6: Now it's time to push the updated repo to remote repo using the same url which copied
+7: By using (git remote add origin(name) https://github.com/rudramodh/branchDemo.git) command to add a new remote
+8: The type in (git remote -v) to check whether the new remote has been created or not.
+9: Finally if everything is clean we will write (git push -u origin(name) master)
+
+If not clear the check this video out: https://www.youtube.com/watch?v=z8CYDyFqzp0
+
+
+********************************************************************
+
+To clone any repository get the link from github and type
+(git clone url.git)
+and if you want to add to a specified folder name type (git clone url.git folder_name)
+
